@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System.Reflection;
 using Verse;
 
@@ -9,8 +9,8 @@ namespace HarvestSync
 	{
 		static HarvestSyncInitializer()
 		{
-			var harmonyInstance = HarmonyInstance.Create("com.chippedchap.harvestsync");
-			harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+			var harmony = new Harmony("com.jelly.harvestsync");
+			harmony.PatchAll(Assembly.GetExecutingAssembly());
 		}
 	}
 }

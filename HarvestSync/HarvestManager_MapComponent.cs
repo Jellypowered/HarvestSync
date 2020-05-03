@@ -1,6 +1,4 @@
-﻿using RimWorld;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -8,7 +6,7 @@ namespace HarvestSync
 {
 	class HarvestManager_MapComponent : MapComponent
 	{
-		private HashSet<Zone> fullyGrownZones = new HashSet<Zone>();
+		private readonly HashSet<Zone> fullyGrownZones = new HashSet<Zone>();
 
 		private Dictionary<Zone, HarvestSetting> harvestSettings = new Dictionary<Zone, HarvestSetting>();
 		private List<Zone> areasForSaving = new List<Zone>();
@@ -96,7 +94,7 @@ namespace HarvestSync
 
 		public float GetProportion(Zone zone)
 		{
-			return (proportionsOfAllCells.ContainsKey(zone)) ? proportionsOfAllCells[zone] : 0f;
+			return proportionsOfAllCells.ContainsKey(zone) ? proportionsOfAllCells[zone] : 0f;
 		}
 
 		public bool CanHarvestZone(Zone zone)
@@ -121,7 +119,7 @@ namespace HarvestSync
 					fullyGrownZones.Remove(zone);
 				}
 			}
-			foreach(KeyValuePair<Zone, HarvestSetting> zoneAndSetting in harvestSettings)
+			foreach (KeyValuePair<Zone, HarvestSetting> zoneAndSetting in harvestSettings)
 			{
 				float proportion = GetProportion(zoneAndSetting.Key);
 				if (zoneAndSetting.Value == HarvestSetting.SyncHarvest && zoneAndSetting.Key.PlantsMatureInZone(proportion))
@@ -133,7 +131,7 @@ namespace HarvestSync
 
 		private void StripNullKeys()
 		{
-			foreach(Zone zoneKey in new List<Zone>(harvestSettings.Keys))
+			foreach (Zone zoneKey in new List<Zone>(harvestSettings.Keys))
 			{
 				if (zoneKey == null) harvestSettings.Remove(zoneKey);
 			}

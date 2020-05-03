@@ -1,5 +1,4 @@
-﻿using RimWorld;
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
 
 namespace HarvestSync
@@ -31,7 +30,7 @@ namespace HarvestSync
 		{
 			int currentNumber = PlantsInZoneUtility.GetProportionNumber(growingZone.Cells.Count, percent / 100f);
 
-			string futureStatusMessage = "";
+			string futureStatusMessage;// = "";
 			if (percent == 100)
 			{
 				futureStatusMessage = "HarvestProportionResultRedundant".Translate();

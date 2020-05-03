@@ -1,13 +1,13 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 
 namespace HarvestSync
 {
-	[HarmonyPatch(typeof(WorkGiver_GrowerHarvest))]
+	[HarmonyPatch(typeof(WorkGiver_Grower))]
 	[HarmonyPatch("ExtraRequirements")]
 	class HarvestPotentialWorkCellsPatcher
 	{
-		static void Postfix(ref bool __result, IPlantToGrowSettable settable)
+		public static void Postfix(ref bool __result, IPlantToGrowSettable settable)
 		{
 			if (settable is Zone_Growing zone)
 			{
